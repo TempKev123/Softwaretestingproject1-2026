@@ -1,23 +1,33 @@
-def recommend_books(user_id):
-    import pandas as pd
-    from collections import Counter
+import pandas as pd
+from collections import Counter
 
-    # Load in the data
-    try:
-        books = pd.read_csv("dummydata/books.csv")
-    except FileNotFoundError:
-        print("Error: books.csv not found.")
-        return []
 
-    try:
-        borrow_history = pd.read_csv("dummydata/userhistory.csv")
-    except FileNotFoundError:
-        print("Error: userhistory.csv not found.")
-        return []
+# --------------------------------
+# Load data
+# --------------------------------
+
+try:
+    books = pd.read_csv("dummydata/books.csv")
+except FileNotFoundError:
+    print("Error: books.csv not found.")
+    books = pd.DataFrame()
+
+try:
+    borrow_history = pd.read_csv("dummydata/userhistory.csv")
+except FileNotFoundError:
+    print("Error: userhistory.csv not found.")
+    borrow_history = pd.DataFrame()
+
+
+# --------------------------------
+# Find user's preferred tags
+# --------------------------------
+
+def findTags(user_id):
 
     # Get user's borrowed books
     user_borrowed_books = borrow_history[
-        borrow_history['user_id'] == user_id
+        borrow_history["user_id"] == user_id
     ]
 
     if user_borrowed_books.empty:
@@ -25,7 +35,7 @@ def recommend_books(user_id):
         return []
 
     # Get book IDs
-    book_ids = user_borrowed_books['book_id'].tolist()
+    book_ids = user_borrowed_books["book_id"].tolist()
 
     # Find those books in books.csv
     borrowed_books = books[
@@ -48,14 +58,97 @@ def recommend_books(user_id):
     return tag_array
 
 
-def main():
-    # Main driver allows code testing in file and importing to other files
-    print(recommend_books("U001"))
-    print(recommend_books("U002"))
-    print(recommend_books("U003"))
-    print(recommend_books("U004"))
-    print(recommend_books("invalid_user"))
+# --------------------------------
+# Calculate book recommendation score
+# --------------------------------
 
+def calculate_score(tags, tag_preferences):
+
+    score = 0
+
+    # Convert:[["adventure", 7], ["fantasy", 4]] into: ["fantasy", "adventure", "fiction"]
+
+    tag_counts = dict(tag_preferences)
+
+   
+
+    for tag in tags.split(","):
+
+        tag = tag.strip()
+
+        if tag in tag_counts:
+            score += tag_counts[tag]
+
+    return score
+
+
+# --------------------------------
+# Generate recommendations
+# --------------------------------
+
+def recommend(user_id):
+
+    # Find user's preferences
+    tag_preferences = findTags(user_id)
+
+    if not tag_preferences:
+        return pd.DataFrame()
+
+    # Make a copy so the original books DataFrame isn't modified
+    recommendations = books.copy()
+
+    # Calculate score for each book
+    recommendations["score"] = recommendations["tags"].apply(
+        lambda tags: calculate_score(tags, tag_preferences)
+    )
+
+    # Remove unavailable books
+    recommendations = recommendations[
+        recommendations["available"] > 0
+    ]
+
+    # Remove books with no matching tags
+    recommendations = recommendations[
+        recommendations["score"] > 0
+    ]
+
+    # Highest score first
+    recommendations = recommendations.sort_values(
+        by="score",
+        ascending=False
+    )
+
+    return recommendations
+
+
+# --------------------------------
+# Main
+# --------------------------------
+
+def test():
+    users = ["U001", "U002", "U003", "U004", "U005"]
+
+    for user_id in users:
+
+        recommendations = recommend(user_id)
+
+        print(f"\nRecommendations for {user_id}:")
+
+        if recommendations.empty:
+            print("No recommendations found.")
+            continue
+
+        print(
+            recommendations[
+                [
+                    "book_id",
+                    "title",
+                    "author",
+                    "score",
+                    "available"
+                ]
+            ].head(3).to_string(index=False)
+        )
 
 if __name__ == "__main__":
-    main()
+    test()
