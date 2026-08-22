@@ -2,10 +2,7 @@ import pandas as pd
 from collections import Counter
 
 
-# --------------------------------
 # Load data
-# --------------------------------
-
 try:
     books = pd.read_csv("dummydata/books.csv")
 except FileNotFoundError:
@@ -18,10 +15,6 @@ except FileNotFoundError:
     print("Error: userhistory.csv not found.")
     borrow_history = pd.DataFrame()
 
-
-# --------------------------------
-# Find user's preferred tags
-# --------------------------------
 
 def findTags(user_id):
 
@@ -49,18 +42,12 @@ def findTags(user_id):
         for tag in tags.split(","):
             tag_count[tag.strip()] += 1
 
-    # Convert tag counts to an array
     tag_array = []
 
     for tag, count in tag_count.most_common():
         tag_array.append([tag, count])
 
     return tag_array
-
-
-# --------------------------------
-# Calculate book recommendation score
-# --------------------------------
 
 def calculate_score(tags, tag_preferences):
 
@@ -82,9 +69,6 @@ def calculate_score(tags, tag_preferences):
     return score
 
 
-# --------------------------------
-# Generate recommendations
-# --------------------------------
 
 def recommend(user_id):
 
@@ -120,10 +104,6 @@ def recommend(user_id):
 
     return recommendations
 
-
-# --------------------------------
-# Main
-# --------------------------------
 
 def test():
     users = ["U001", "U002", "U003", "U004", "U005"]
