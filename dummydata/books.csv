@@ -1,31 +1,31 @@
-book_id,title,author,tags,available
-B001,The Hobbit,J.R.R. Tolkien,"fantasy,adventure,fiction",5
-B002,The Fellowship of the Ring,J.R.R. Tolkien,"fantasy,adventure,fiction,epic",4
-B003,The Two Towers,J.R.R. Tolkien,"fantasy,adventure,fiction,epic",3
-B004,The Return of the King,J.R.R. Tolkien,"fantasy,adventure,fiction,epic",4
-B005,Harry Potter and the Sorcerer's Stone,J.K. Rowling,"fantasy,magic,adventure,fiction",2
-B006,Harry Potter and the Chamber of Secrets,J.K. Rowling,"fantasy,magic,adventure,fiction",1
-B007,The Lion the Witch and the Wardrobe,C.S. Lewis,"fantasy,magic,adventure,fiction",0
-B008,The Chronicles of Narnia,C.S. Lewis,"fantasy,magic,adventure,fiction",3
-B009,1984,George Orwell,"dystopian,political,fiction,science-fiction",1
-B010,Animal Farm,George Orwell,"political,satire,fiction",4
-B011,Brave New World,Aldous Huxley,"dystopian,science-fiction,fiction",3
-B012,Fahrenheit 451,Ray Bradbury,"dystopian,science-fiction,fiction",0
-B013,Dune,Frank Herbert,"science-fiction,space,adventure,fiction",1
-B014,Dune Messiah,Frank Herbert,"science-fiction,space,politics,fiction",2
-B015,The Martian,Andy Weir,"science-fiction,space,survival,adventure",4
-B016,Project Hail Mary,Andy Weir,"science-fiction,space,adventure,survival",5
-B017,Ender's Game,Orson Scott Card,"science-fiction,space,adventure,military",3
-B018,Foundation,Isaac Asimov,"science-fiction,space,politics,fiction",4
-B019,Sherlock Holmes,Arthur Conan Doyle,"mystery,detective,crime,fiction",6
-B020,The Hound of the Baskervilles,Arthur Conan Doyle,"mystery,detective,crime,horror",3
-B021,The Da Vinci Code,Dan Brown,"mystery,thriller,crime,adventure",0
-B022,Gone Girl,Gillian Flynn,"mystery,thriller,crime,fiction",4
-B023,The Shining,Stephen King,"horror,psychological,fiction,thriller",3
-B024,It,Stephen King,"horror,fiction,supernatural,thriller",4
-B025,Pride and Prejudice,Jane Austen,"romance,classic,fiction",5
-B026,Jane Eyre,Charlotte Bronte,"romance,classic,fiction,gothic",3
-B027,Little Women,Louisa May Alcott,"classic,fiction,romance,family",4
-B028,The Great Gatsby,F. Scott Fitzgerald,"classic,romance,fiction,tragedy",3
-B029,The Alchemist,Paulo Coelho,"fiction,philosophy,adventure,self-discovery",2
-B030,The Book Thief,Markus Zusak,"historical,fiction,war,drama",1
+book_id,title,author,tags,available,popularity
+B001,The Hobbit,J.R.R. Tolkien,"fantasy,adventure,fiction",5,95
+B002,The Fellowship of the Ring,J.R.R. Tolkien,"fantasy,adventure,fiction,epic",4,96
+B003,The Two Towers,J.R.R. Tolkien,"fantasy,adventure,fiction,epic",3,92
+B004,The Return of the King,J.R.R. Tolkien,"fantasy,adventure,fiction,epic",4,94
+B005,Harry Potter and the Sorcerer's Stone,J.K. Rowling,"fantasy,magic,adventure,fiction",2,99
+B006,Harry Potter and the Chamber of Secrets,J.K. Rowling,"fantasy,magic,adventure,fiction",1,93
+B007,The Lion the Witch and the Wardrobe,C.S. Lewis,"fantasy,magic,adventure,fiction",0,91
+B008,The Chronicles of Narnia,C.S. Lewis,"fantasy,magic,adventure,fiction",3,88
+B009,1984,George Orwell,"dystopian,political,fiction,science-fiction",1,98
+B010,Animal Farm,George Orwell,"political,satire,fiction",4,92
+B011,Brave New World,Aldous Huxley,"dystopian,science-fiction,fiction",3,89
+B012,Fahrenheit 451,Ray Bradbury,"dystopian,science-fiction,fiction",0,87
+B013,Dune,Frank Herbert,"science-fiction,space,adventure,fiction",1,95
+B014,Dune Messiah,Frank Herbert,"science-fiction,space,politics,fiction",2,82
+B015,The Martian,Andy Weir,"science-fiction,space,survival,adventure",4,90
+B016,Project Hail Mary,Andy Weir,"science-fiction,space,adventure,survival",5,91
+B017,Ender's Game,Orson Scott Card,"science-fiction,space,adventure,military",3,88
+B018,Foundation,Isaac Asimov,"science-fiction,space,politics,fiction",4,86
+B019,Sherlock Holmes,Arthur Conan Doyle,"mystery,detective,crime,fiction",6,90
+B020,The Hound of the Baskervilles,Arthur Conan Doyle,"mystery,detective,crime,horror",3,85
+B021,The Da Vinci Code,Dan Brown,"mystery,thriller,crime,adventure",0,92
+B022,Gone Girl,Gillian Flynn,"mystery,thriller,crime,fiction",4,89
+B023,The Shining,Stephen King,"horror,psychological,fiction,thriller",3,93
+B024,It,Stephen King,"horror,fiction,supernatural,thriller",4,92
+B025,Pride and Prejudice,Jane Austen,"romance,classic,fiction",5,97
+B026,Jane Eyre,Charlotte Bronte,"romance,classic,fiction,gothic",3,88
+B027,Little Women,Louisa May Alcott,"classic,fiction,romance,family",4,87
+B028,The Great Gatsby,F. Scott Fitzgerald,"classic,romance,fiction,tragedy",3,94
+B029,The Alchemist,Paulo Coelho,"fiction,philosophy,adventure,self-discovery",2,93
+B030,The Book Thief,Markus Zusak,"historical,fiction,war,drama",1,89
