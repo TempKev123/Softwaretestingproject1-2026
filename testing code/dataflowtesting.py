@@ -2,18 +2,28 @@ import pandas as pd
 from collections import Counter
 
 
-# Load data
-try:
-    books = pd.read_csv("dummydata/books.csv")
-except FileNotFoundError:
-    print("Error: books.csv not found.")
-    books = pd.DataFrame()
+books = pd.DataFrame()
+borrow_history = pd.DataFrame()
 
-try:
-    borrow_history = pd.read_csv("dummydata/userhistory.csv")
-except FileNotFoundError:
-    print("Error: userhistory.csv not found.")
-    borrow_history = pd.DataFrame()
+
+# Load data
+def load_data(data_dir="dummydata"):
+    global books, borrow_history
+
+    try:
+        books = pd.read_csv(f"{data_dir}/books.csv")
+    except FileNotFoundError:
+        print("Error: books.csv not found.")
+        books = pd.DataFrame()
+
+    try:
+        borrow_history = pd.read_csv(f"{data_dir}/userhistory.csv")
+    except FileNotFoundError:
+        print("Error: userhistory.csv not found.")
+        borrow_history = pd.DataFrame()
+
+
+load_data()
 
 
 def findTags(user_id):
@@ -41,11 +51,10 @@ def findTags(user_id):
 
 def calculate_score(tags, tag_preferences):
     score = 0
-    tag_counts = {tag.strip().lower(): count for tag, 
-                  count in tag_preferences}
+    tag_counts = dict(tag_preferences)
 
     for tag in str(tags).split(","):
-        tag = tag.strip().lower()
+        tag = tag.strip()
         if tag in tag_counts:
             score += tag_counts[tag]
 
@@ -53,15 +62,12 @@ def calculate_score(tags, tag_preferences):
 
 
 def recommend(user_id, top_n=5):
-    if not isinstance(top_n, int) or isinstance(top_n, bool) or top_n < 0:
-        raise ValueError("top_n must be a non-negative integer")
-
     # Find user's tag preferences and previously borrowed books
     tag_preferences, borrowed_book_ids = findTags(user_id)
 
     # Filter out unavailable books and books already read
     candidate_books = books[
-        (books["available"] > 0) & 
+        (books["available"] > 0) &
         (~books["book_id"].isin(borrowed_book_ids))
     ].copy()
 
